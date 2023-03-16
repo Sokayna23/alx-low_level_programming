@@ -7,5 +7,5 @@
  */
 int main(void)
 {
-	retutn (0);
+	return (0);
 }
