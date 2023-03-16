@@ -7,5 +7,6 @@
  */
 int main(void)
 {
+	ptintf("hello world");
 	return (0);
 }
