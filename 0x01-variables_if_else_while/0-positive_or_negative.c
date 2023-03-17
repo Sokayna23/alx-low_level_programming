@@ -7,7 +7,7 @@
  *
  * Return: Always 0 (Success)
 */
-void srand(void);
+void srand(unsigned int seed);
 int rand(void);
 
 int main(void)
