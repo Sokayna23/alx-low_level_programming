@@ -10,7 +10,6 @@
 int main(void)
 {
 	int n;
-	int Rand_MAX = 0;
 
 	srand(time(0));
 
