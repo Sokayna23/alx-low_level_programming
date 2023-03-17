@@ -7,12 +7,12 @@
  *
  * Return: Always 0 (Success)
 */
-void srand(unsigned int seed);
+void srand(void);
 int rand(void);
 
 int main(void)
 {
-	int n;
+	signed int n;
 	unsigned int Rand_MAX = 0;
 
 	srand(time(0));
