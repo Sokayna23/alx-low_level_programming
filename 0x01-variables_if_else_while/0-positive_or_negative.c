@@ -1,14 +1,22 @@
 #include <stdio.h>
 #include <time.h>
-/* more headers goes there */
+#include <stdlib.h>
+
 /**
  * main -Entry point
  *
  * Return: Always 0 (Success)
- */
+*/
+void srand(unsigned int seed);
+int rand(void);
+
 int main(void)
-{	int n;
+{
+	int n;
+	unsigned int Rand_MAX = 0;
+
 	srand(time(0));
+
 	n = rand() - Rand_MAX / 2;
 
 	if (n > 0)
