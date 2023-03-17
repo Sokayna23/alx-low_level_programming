@@ -12,8 +12,8 @@ int main(void)
 
 	while (string[i] != '\0')
 	{
-		 putchar(string[i]);
-		 i++;
+	putchar(string[i]);
+	i++;
 	}
 	return (1);
 }
