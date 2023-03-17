@@ -7,13 +7,13 @@
  */
 int main(void)
 {
-	char string[] = "and that piece of art is useful\\ \- Dora Korpar, 2015\-10\-19";
+	char string[] = "and that piece of art is useful - Dora Korpar, 2015-10-19";
 	int i = 0;
 
 	while (string[i] != '\0') 
 	{
-	 putchar(string[i]);
-	 i++;
+		 putchar(string[i]);
+		 i++;
 	}
 	return (1);	
 }
