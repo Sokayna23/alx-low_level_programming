@@ -9,8 +9,8 @@
 */
 int main(void)
 {
-	signed int n;
-	unsigned int Rand_MAX = 0;
+	int n;
+	int Rand_MAX = 0;
 
 	srand(time(0));
 
