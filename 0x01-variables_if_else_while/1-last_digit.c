@@ -19,13 +19,11 @@ int main(void)
 	/* your code goes there */
 	last_degit = n % 10;
 
-	if (last_degit < 0)
-		last_degit = -last_degit;
 	if (last_degit > 5)
-		printf("Last degit of  %d is %d and is  greater than 5\n", n, last_degit);
+		printf("Last degit of  %d is %d and is greater than 5\n", n, last_degit);
 	else if (last_degit == 0)
 		printf("Last degit of %d is %d and is 0\n", n, last_degit);
-	else if (last_degit < 6)
+	else if (last_degit < 6 && last_degit > 0)
 		printf("Last degit of %d is %d and is less than 6 not 0\n", n, last_degit);
 	return (0);
 }
