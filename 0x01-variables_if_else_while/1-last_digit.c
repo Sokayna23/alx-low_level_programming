@@ -12,11 +12,12 @@
 int main(void)
 {
 	int n;
+	int last_degit;
 
 	srand(time(0));
 	n = rand() - RAND_MAX / 2;
 	/* your code goes there */
-	int last_degit = n % 10;
+	last_degit = n % 10;
 
 	if (last_degit < 0)
 		last_degit = -last_degit;
