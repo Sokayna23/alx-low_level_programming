@@ -9,7 +9,7 @@ int main(void)
 {
 	int hex_num;
 
-	for (hex_num = 30; hex_num <= 39; hex_num++)
+	for (hex_num = 0; hex_num <= 9; hex_num++)
 	{
 		putchar(hex_num);
 	}
