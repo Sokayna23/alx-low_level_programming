@@ -13,8 +13,8 @@ int main(void)
 	{
 		if (num >= 0 && num <= 9)
 		{
-			putchar(num);
-		} else if (num >=10 && num <=15)
+			putchar(num + '0');
+		} else if (num >= 10 && num <= 15)
 		{
 			putchar(num - 10 + 'a');
 		}
