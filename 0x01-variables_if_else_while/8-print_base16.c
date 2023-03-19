@@ -7,16 +7,19 @@
  */
 int main(void)
 {
-	int hex_num;
+	int num;
 
-	for (hex_num = 0; hex_num <= 9; hex_num++)
+	for (num = 0; num < 16; num++)
 	{
-		putchar(hex_num);
+		if (num >= 0 && num <= 9)
+		{
+			putchar(num);
+		} else if (num >=10 && num <=15)
+		{
+			putchar(num - 10 + 'a');
+		}
 	}
-	for (hex_num = 61; hex_num <= 66; hex_num++)
-	{
-		putchar(hex_num);
-	}
+
 	putchar('\n');
 	return (0);
 }
