@@ -7,7 +7,7 @@
  */
 int main(void)
 {
-	char hex_num;
+	int hex_num;
 
 	for (hex_num = 30; hex_num <= 39; hex_num++)
 	{
