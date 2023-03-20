@@ -18,7 +18,7 @@ int main(void)
 		putchar(' ');
 		}
 		if (n == 57)
-			putchar(n' ');
+			putchar(n);
 	}
 	return (0);
 }
