@@ -18,7 +18,7 @@ int main(void)
 				putchar(x);
 				putchar(y);
 				putchar(z);
-				if (x < y || y < z)
+				if (x < y && y < z)
 				{
 				if (x != 55 || y != 56 || z != 57)
 				{
