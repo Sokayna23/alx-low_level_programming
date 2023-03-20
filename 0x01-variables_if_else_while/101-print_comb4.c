@@ -15,13 +15,16 @@ int main(void)
 		{
 			for (z = 50; z < 58; z++)
 			{
-				putchar(x);
-				putchar(y);
-				putchar(z);
-				if (x != 55 || y != 56 || z != 57)
+				if (z > y && y > x)
 				{
-					putchar(',');
-					putchar(' ');
+					putchar(x);
+					putchar(y);
+					putchar(z);
+					if (x != 55 || y != 56 || z != 57)
+					{
+						putchar(',');
+						putchar(' ');
+					}
 				}
 			}
 		}
