@@ -8,7 +8,7 @@
  */
 void print_rev(char *s)
 {
-	char string;
+	char string = ' ';
 
 	while (*s >= string)
 	{
