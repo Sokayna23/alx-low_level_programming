@@ -16,6 +16,7 @@ void print_rev(char *s)
 		count_char++;
 		last_char++;
 	}
+	last_char--;
 
 	while (last_char >= s)
 	{
