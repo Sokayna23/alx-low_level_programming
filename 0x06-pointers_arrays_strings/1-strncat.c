@@ -1,22 +1,6 @@
 #include "main.h"
 
 /**
- * _strlen - Length of a string
- * @s: a pointer that points to a character
- * Return: integer value
- */
-int _strlen(char *s)
-{
-	int count_char = 0;
-
-	while (*s != '\0')
-	{
-		count_char = count_char + 1;
-		s++;
-	}
-	return (count_char);
-}
-/**
  * _strncat - concatenates two strings
  * @src: pointer to a string (source)
  * @dest: pointer to a string (destination buffer)
@@ -25,30 +9,18 @@ int _strlen(char *s)
  */
 char *_strncat(char *dest, char *src, int n)
 {
-	int i;
-	int j;
-	int L;
+	int i = 0;
+	int L = 0;
 
-	i = 0;
-	while (dest[i] != '\0')
+	while (dest[L] != '\0')
 	{
-		i++;
+		L++;
 	}
-	L = _strlen(src);
-	j = 0;
-	n = 0;
-	while (src[j] != '\0')
+	while (i < n && src[i] != '\0')
 	{
-		if (n < L)
-		{
-			dest[i] = src[j];
-			i++;
-			j++;
-			continue;
-		}
-		else
-			break;
+		dest[L + i] = src[i];
+		i++
 	}
-	dest[i] = '\0';
+	dest[L + i] = '\0';
 	return (dest);
 }
