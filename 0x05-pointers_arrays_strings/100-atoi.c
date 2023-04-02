@@ -29,7 +29,7 @@ int _atoi(char *s)
 			break;
 		}
 		i++;
-	}		
+	}
 	integer = integer * sign;
 	return (integer);
 }
