@@ -61,17 +61,11 @@ int _atoi(char *s)
  */
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
-	int N1;
-	int N2;
-	int N;
-	int len;
+	int N1, N2, N, len;
 
 	N1 = _atoi(n1);
 	N2 = _atoi(n2);
 	N = N1 + N2;
-	r = malloc(sizeof(char) * (size_r));
-	if (r == NULL)
-		return (0);
 	sprintf(r, "%d", N);
 	len = _strlen(r);
 
