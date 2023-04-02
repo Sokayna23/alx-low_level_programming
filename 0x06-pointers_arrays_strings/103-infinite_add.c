@@ -72,7 +72,7 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 	sprintf(r, "%d", N);
 	len = _strlen(r);
 
-	if (len < size_r)
+	if (len <= size_r)
 	{
 		r[len] = '\0';
 		return (r);
