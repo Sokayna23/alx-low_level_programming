@@ -66,6 +66,7 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 	N1 = _atoi(n1);
 	N2 = _atoi(n2);
 	N = N1 + N2;
+	r = malloc(sizeof(char) * (size_r));
 	sprintf(r, "%d", N);
 	len = _strlen(r);
 
