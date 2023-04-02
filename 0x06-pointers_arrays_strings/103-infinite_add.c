@@ -1,55 +1,38 @@
 #include "main.h"
 #include <stdio.h>
-#include <stdlib.h>
+#include <string.h>
 
 /**
- * _strlen - Length of a string
- * @s: a pointer that points to a character
- * Return: integer value
+ * rev_string - Reverses strings
+ * @s: Pointher that points to a character
+ * Return: nothing.
  */
-int _strlen(char *s)
+void rev_string(char *s)
 {
-	int count_char = 0;
+	char *first_char;
+	char *last_char;
+	char tmp;
 
-	while (*s != '\0')
+	first_char = s;
+	last_char = s + strlen(s) - 1;
+
+	while (first_char < last_char)
 	{
-		count_char = count_char + 1;
-		s++;
+		tmp = *first_char;
+		*first_char = *last_char;
+		*last_char = tmp;
+		first_char++;
+		last_char--;
 	}
-	return (count_char);
 }
 /**
  * _atoi - Converts a string to an integer.
  * @s: The pointer to a character
  * Return: An integer.
  */
-int _atoi(char *s)
+int _atoi(char s)
 {
-	int i = 0;
-	unsigned int integer = 0;
-	int sign = 1;
-	int is_digit = 0;
-
-	while (s[i] != '\0')
-	{
-		if (s[i] == 45)
-		{
-			sign = sign * (-1);
-		}
-		while (s[i] >= 48 && s[i] <= 57)
-		{
-			is_digit = 1;
-			integer = (integer * 10) + (s[i] - '0');
-			i++;
-		}
-		if (is_digit == 1)
-		{
-			break;
-		}
-		i++;
-	}
-	integer = integer * sign;
-	return (integer);
+	return (s - 48);
 }
 /**
  *infinite_add - Adds two numbers
@@ -61,25 +44,36 @@ int _atoi(char *s)
  */
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
-	int N1, N2, N, len;
+	int N1, N2, sum, i, k, L, L1, L2;
 
-	N1 = _atoi(n1);
-	N2 = _atoi(n2);
-	N = N1 + N2;
-	r = malloc(sizeof(char) * (size_r));
-	if (r == NULL)
-		return (0);
-	sprintf(r, "%d", N);
-	len = _strlen(r);
-
-	if (len <= size_r)
+	L1 = strlen(n1);
+	L2 = strlen(n2);
+	L = L1 > L2 ? L1 : L2;
+	i = 0;
+	k = 0;
+	for (i = 0; i < L; i++)
 	{
-		r[len] = '\0';
+		N1 = _atoi(n1[L1 - 1 - i]);
+		N2 = _atoi(n2[L2 - 1 - i]);
+		sum = N1 + N2 + k;
+		if (sum > 9)
+		{
+			k = 1;
+			sum = sum - 10;
+		}
+		else
+			k = 0;
+		r[i] = sum + '0';
+	}
+	if (k == 1)
+	{
+      		r[i] = k;
+		i++;
+	}
+	rev_string(r);
+	r[i] = '\0'; 
+	if (L + 1 < size_r)
 		return (r);
-	}
-	else
-	{
-		free(r);
+	else 
 		return (0);
-	}
 }
