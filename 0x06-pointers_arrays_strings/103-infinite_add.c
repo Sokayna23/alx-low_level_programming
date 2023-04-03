@@ -27,11 +27,14 @@ void rev_string(char *s)
 /**
  * _atoi - Converts a string to an integer.
  * @s: The pointer to a character
+ * @i: an integer
  * Return: An integer.
  */
-int _atoi(char s)
+int _atoi(char *s, int i)
 {
-	return (s - 48);
+	if (i < (int) strlen(s))
+		return (s[strlen(s) - 1 - i] - '0');
+	return (0);
 }
 /**
  *infinite_add - Adds two numbers
@@ -47,13 +50,16 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 
 	L1 = strlen(n1);
 	L2 = strlen(n2);
-	L = (L1 > L2 ? L1 : L2);
+	if (L1 > L2)
+		L = L1;
+	else
+		L = L2;
 	i = 0;
 	k = 0;
 	for (i = 0; i < L; i++)
 	{
-		N1 = _atoi(n1[L1 - 1 - i]);
-		N2 = _atoi(n2[L2 - 1 - i]);
+		N1 = _atoi(n1, i);
+		N2 = _atoi(n2, i);
 		sum = N1 + N2 + k;
 		if (sum > 9)
 		{
