@@ -15,7 +15,6 @@ void rev_string(char *s)
 
 	first_char = s;
 	last_char = s + strlen(s) - 1;
-
 	while (first_char < last_char)
 	{
 		tmp = *first_char;
@@ -48,7 +47,7 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 
 	L1 = strlen(n1);
 	L2 = strlen(n2);
-	L = L1 > L2 ? L1 : L2;
+	L = (L1 > L2 ? L1 : L2);
 	i = 0;
 	k = 0;
 	for (i = 0; i < L; i++)
@@ -63,17 +62,19 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 		}
 		else
 			k = 0;
-		r[i] = sum + '0';
+		r[i] = sum + 48;
 	}
-	if (k == 1)
-	{
-      		r[i] = k;
-		i++;
-	}
-	rev_string(r);
-	r[i] = '\0'; 
 	if (L + 1 < size_r)
+	{
+		if (k == 1)
+		{
+			r[i] = k + 48;
+			i++;
+		}
+		r[i] = '\0';
+		rev_string(r);
 		return (r);
-	else 
+	}
+	else
 		return (0);
 }
