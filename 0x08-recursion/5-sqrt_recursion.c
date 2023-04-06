@@ -12,11 +12,9 @@ int natural_sqrt(int x, int y)
 		return (x);
 	else if (y < x * x)
 		return (-1);
-	else
-	{
-		x++;
-		return (natural_sqrt(x, y));
-	}	
+	x++;
+	return (natural_sqrt(x, y));
+	}
 }
 /**
  * _sqrt_recursion - Returns the natural square root of a number
