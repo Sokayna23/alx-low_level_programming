@@ -1,34 +1,31 @@
 #include "main.h"
 
 /**
+ * natural_sqrt - Returns a natural square root
+ * @x: an integer
+ * @y: an integer
+ * Return: the square root of a number (natural)
+ */
+int natural_sqrt(int x, int y)
+{
+	if (y == x * x)
+		return (x);
+	else if (y < x * x)
+		return (-1);
+	else
+	{
+		x++;
+		return (natural_sqrt(x, y));
+	}	
+}
+/**
  * _sqrt_recursion - Returns the natural square root of a number
  * @n: an integer
  * Return: an integer
  */
 int _sqrt_recursion(int n)
 {
-if (n < 0)
-return (-1);
-if (n == 0)
-return (0);
-if (n == 1)
-return (1);
-return (_pow_recursion(n, 2));
-}
-/**
- * _pow_recursion - returns the power of x to y
- * @x: an integer
- * @y: an integer
- * Return: an integer
- */
-int _pow_recursion(int x, int y)
-{
-if (y < 0)
-return (-1);
-if (y == 0)
-return (1);
-if (x == 0)
-return (0);
-else
-return (x * _pow_recursion(x, y - 1));
+	if (n == 0)
+		return (0);
+	return (natural_sqrt(1, n));
 }
