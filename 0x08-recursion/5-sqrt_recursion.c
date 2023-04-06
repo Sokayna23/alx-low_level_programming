@@ -13,7 +13,7 @@ if (n == 0)
 return (0);
 if (n == 1)
 return (1);
-return (_pow_recursion(n, 1));
+return (_pow_recursion(n, 2));
 }
 /**
  * _pow_recursion - returns the power of x to y
