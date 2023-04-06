@@ -14,7 +14,6 @@ int natural_sqrt(int x, int y)
 		return (-1);
 	x++;
 	return (natural_sqrt(x, y));
-	}
 }
 /**
  * _sqrt_recursion - Returns the natural square root of a number
