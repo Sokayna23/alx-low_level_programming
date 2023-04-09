@@ -52,17 +52,13 @@ int main(int argc, char *argv[])
 		return (0);
 	}
 	for (i = 1; i < argc; i++)
-	{
-		while (*argv[i] != '\0')
+	{	
+		if (!(*argv[i] >= 48 && *argv[i] <= 57))
 		{
-			if (!(*argv[i] >= 48 && *argv[i] <= 97))
-			{
-				printf("Error\n");
-				return (1);
-			}
-			add = add + _atoi(argv[i]);
-			i++;
+			printf("Error\n");
+			return (1);
 		}
+		add = add + _atoi(argv[i]);
 	}
 	printf("%d\n", add);
 	return (0);
