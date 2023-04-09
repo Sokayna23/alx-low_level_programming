@@ -13,7 +13,10 @@ int main(int argc, char *argv[])
 	int nargs = 0;
 
 	if (argc == 1)
-		printf("%d\n", nargs);
+	{
+		printf("0\n");
+		return (1);
+	}
 	if (argc > 1)
 	{
 		for (i = 1; i < argc; i++)
