@@ -43,7 +43,7 @@ int _atoi(char *s)
  */
 int main(int argc, char *argv[])
 {
-	int i;
+	int i, j;
 	int add = 0;
 
 	if (argc == 1)
@@ -53,10 +53,15 @@ int main(int argc, char *argv[])
 	}
 	for (i = 1; i < argc; i++)
 	{
-		if (!(*argv[i] >= 48 && *argv[i] <= 57))
+		j = 0;
+		while (argv[i][j] != '\0')
 		{
-			printf("Error\n");
-			return (1);
+			if (!(argv[i][j] >= 48 && argv[i][j] <= 57))
+			{
+				printf("Error\n");
+				return (1);
+			}
+			j++;
 		}
 		add = add + _atoi(argv[i]);
 	}
