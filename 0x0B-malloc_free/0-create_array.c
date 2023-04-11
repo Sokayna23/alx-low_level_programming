@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include "main.h"
+#include <stdio.h>
 
 /**
  * create_array - Creates an array of characters
@@ -17,7 +18,10 @@ char *create_array(unsigned int size, char c)
 	for (i = 0; i < size; i++)
 	{
 		if (size == 0)
+		{
 			return (0);
+			printf("failed to allocate memory\n");
+		}
 		array[i] = c;
 	}
 	return (array);
