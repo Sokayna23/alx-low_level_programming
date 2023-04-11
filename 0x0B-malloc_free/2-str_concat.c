@@ -13,6 +13,18 @@ char *str_concat(char *s1, char *s2)
 	char *s;
 	unsigned int j, i;
 
+	if (s1 == NULL && s2 == NULL)
+	{
+		return (NULL);
+	}
+	else if (s1 == NULL && s2)
+	{
+		return (s2);
+	}
+	else if (s2 == NULL && s1)
+	{
+		return (s1);
+	}
 	s = malloc(sizeof(char) * (strlen(s1) + strlen(s2) + 1));
 	if (s == NULL)
 		return (NULL);
