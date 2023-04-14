@@ -1,6 +1,7 @@
 #include "main.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 /**
  * argstostr - Concatinates all the arguments of a program
  * @ac: An integer
@@ -9,16 +10,30 @@
  */
 char *argstostr(int ac, char *av[])
 {
-	int i;
+	int i, j;
+	int l;
+	char *s;
 
-	if (ac == 0|| av == NULL)
+	if (ac == 0 || av == NULL)
 		return (NULL);
-	av = malloc(sizeof(char) * (ac + 1));
-	if (av == NULL)
+	l = 0;
+	for (i = 0; i < ac; i++)
+	{
+		l = l + strlen(av[i]) + 1;
+	}
+	s = malloc(sizeof(char) * l);
+	if (s == NULL)
 		return (NULL);
 	for (i = 0; i < ac; i++)
 	{
-		printf("%s\n", av[i]);
+		j = 0;
+		while (*av[i] != '\0')
+		{
+			s[j] = *av[i];
+			j++;
+			i++;
+		}
+		s[j] = '\n';
 	}
-	return (*av);
+	return (s);
 }
