@@ -21,20 +21,18 @@ char *argstostr(int ac, char *av[])
 	{
 		l = l + strlen(av[i]) + 1;
 	}
-	s = malloc(sizeof(char) * l + ac + 1);
+	s = malloc(sizeof(char) * l + 1);
 	if (s == NULL)
 		return (NULL);
 	for (i = 0; i < ac; i++)
 	{
 		j = 0;
-		while (*av[i] != '\0')
+		while (av[i][j] != '\0')
 		{
-			s[j] = *av[i];
+			s[j] = av[i][j];
 			j++;
-			i++;
 		}
 		s[j] = '\n';
 	}
-	s[j] = '\0';
 	return (s);
 }
