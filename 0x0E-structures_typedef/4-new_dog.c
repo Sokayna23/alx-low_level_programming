@@ -7,7 +7,6 @@
  * @src: char
  * Return: dest
  */
-
 char *_strcpy(char *dest, char *src)
 {
 	int i = -1;
@@ -51,20 +50,30 @@ dog_t *new_dog(char *name, float age, char *owner)
 	{
 		return (NULL);
 	}
-	puppy->name = malloc(sizeof(char) * ( _strlen(name) + 1));
-	if (puppy->name == NULL)
+	if (name != NULL)
 	{
-		free(puppy->name);
-		return (NULL);
+		puppy->name = malloc(sizeof(char) * ( _strlen(name) + 1));
+		if (puppy->name == NULL)
+		{
+			free(puppy);
+			return (NULL);
+		}
+		_strcpy(puppy->name, name);
 	}
+	else
+		puppy->name = NULL;
 	puppy->age = age;
-	puppy->owner = malloc(sizeof(char) * (_strlen(owner) + 1));
-	if (puppy->owner == NULL)
+	if (owner != NULL)
 	{
-		free(puppy->owner);
-		return (NULL);
+		puppy->owner = malloc(sizeof(char) * (_strlen(owner) + 1));
+		if (puppy->owner == NULL)
+		{
+			free(puppy);
+			return (NULL);
+		}
+		_strcpy(puppy->owner, owner);
 	}
-	_strcpy(puppy->name, name);
-	_strcpy(puppy->owner, owner);
+	else
+		puppy->owner = NULL;
 	return (puppy);
 }
