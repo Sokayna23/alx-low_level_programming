@@ -2,7 +2,7 @@
 #include "1-pi.h"
 
 /**
- * main - Prints the name of the file 
+ * main - Prints the name of the file
  *
  * Return: Always 0.
  */
