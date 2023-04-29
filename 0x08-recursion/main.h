@@ -13,4 +13,5 @@ int natural_sqrt(int x, int y);
 int prime_number(int x, int y);
 int is_prime_number(int n);
 int is_palindrome(char *s);
+int is_palindrome_0(char *s, int len, int i);
 #endif
