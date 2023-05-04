@@ -8,20 +8,19 @@
  */
 size_t print_listint_safe(const listint_t *head)
 {
-    const listint_t *slow, *fast;
+    const listint_t *slow = NULL, *fast = NULL;
     size_t count = 0;
 
     slow = head;
     fast = head;
 
-    while (fast != NULL && fast->next != NULL)
+    while (fast != NULL && fast != NULL && fast->next != NULL)
     {
         slow = slow->next;
         fast = fast->next->next;
 
         if (slow == fast)
         {
-            printf("Error: linked list has a loop\n");
             exit(98);
         }
     }
