@@ -27,10 +27,10 @@ unsigned int binary_to_uint(const char *b)
 	len = strlen(b);
 	n = 0;
 	i = 0;
-	while (b[i] == 48 || b[i] == 49)
+	while (b[i] == '0' || b[i] == '1')
 	{
 		k = len - i - 1;
-		n = n + b[i] * power_of_two(k);
+		n = n + (b[i] - '0') * power_of_two(k);
 		i++;
 		return (n);
 	}
