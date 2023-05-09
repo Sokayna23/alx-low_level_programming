@@ -19,7 +19,7 @@ void close_err(int fd)
  * Return: always 0;
  */
 int main(int ac, char **av)
-{	
+{
 	int fd1, fd2, r, w;
 	const char *file_from, *file_to;
 	char *buffer;
@@ -35,19 +35,15 @@ int main(int ac, char **av)
 	if (!buffer)
 		return (-1);
 	fd1 = open(file_from, O_RDONLY);
-	r = read(fd1, buffer, 1024);
 	if (fd1 == -1)
-	{
-		close(fd1);
-		exit(98);
-	}
+		close_err(fd1);
 	r = read(fd1, buffer, 1024);
 	if (r == -1)
 	{
 		dprintf(2, "Error: Can't read from file_from %s\n", file_from);
 		close_err(fd1);
 	}
-	fd2 = open(file_to, O_WRONLY | O_TRUNC, 0664);
+	fd2 = open(file_to, O_WRONLY | O_TRUNC | O_CREAT, 0664);
 	if (fd2 == -1)
 	{
 		close_err(fd2);
@@ -55,7 +51,7 @@ int main(int ac, char **av)
 	w = write(fd2, buffer, r);
 	if (w == -1)
 	{
-		dprintf(2,"Error: Can't write to file_to %s\n", file_to);
+		dprintf(2, "Error: Can't write to file_to %s\n", file_to);
 		close_err(fd2);
 	}
 	close(fd1);
