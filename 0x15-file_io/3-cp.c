@@ -41,7 +41,7 @@ int main(int ac, char **av)
 		dprintf(2, "Error: Can't write to %s\n", file_to);
 		exit(99);
 	}
-	while ((r = read(fd1, buffer, 1024)) > 0)
+	while ((r = read(fd1, buffer, 1024)) != 0)
 	{
 		if (r == -1)
 		{
