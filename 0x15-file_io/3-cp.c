@@ -21,41 +21,41 @@ void close_err(int fd)
 int main(int ac, char **av)
 {
 	int fd1, fd2, r, w;
-	const char *file_from, *file_to;
-	char *buffer;
+	const char *file_from = av[1], *file_to = av[2];
+	char buffer[1024];
 
 	if (ac != 3)
 	{
 		dprintf(2, "Usage: %s cp file_from file_to\n", av[0]);
 		exit(97);
 	}
-	file_from = av[1];
-	file_to = av[2];
-	buffer = malloc(sizeof(char) * 1024);
-	if (!buffer)
-		return (-1);
 	fd1 = open(file_from, O_RDONLY);
 	if (fd1 == -1)
-		close_err(fd1);
-	r = read(fd1, buffer, 1024);
-	if (r == -1)
 	{
-		dprintf(2, "Error: Can't read from file_from %s\n", file_from);
-		close_err(fd1);
+		dprintf(2, "Error: Can't read from file %s\n", file_from);
+		exit(98);
 	}
-	fd2 = open(file_to, O_WRONLY | O_TRUNC | O_CREAT, 0664);
+	fd2 = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd2 == -1)
 	{
-		close_err(fd2);
+		dprintf(2, "Error: Can't write to %s\n", file_to);
+		exit(99);
 	}
-	w = write(fd2, buffer, r);
-	if (w == -1)
+	while ((r = read(fd1, buffer, 1024)) > 0)
 	{
-		dprintf(2, "Error: Can't write to file_to %s\n", file_to);
-		close_err(fd2);
+		if (r == -1)
+		{
+			dprintf(2, "Error: Can't read from file %s\n", file_from);
+			exit(98);
+		}
+		w = write(fd2, buffer, r);
+		if (w == -1)
+		{
+			dprintf(2, "Error: Can't write to %s\n", file_to);
+			exit(99);
+		}
 	}
-	close(fd1);
-	close(fd2);
-	free(buffer);
+	close_err(fd1);
+	close_err(fd2);
 	return (0);
 }
