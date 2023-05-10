@@ -7,7 +7,7 @@
  * @fd1: file descriptor
  * @fd2: file descreptor
  */
-void open_files(const char *file_from, const char *file_to, int *fd1, int *fd2)
+void open_file(const char *file_from, const char *file_to, int *fd1, int *fd2)
 {
 	*fd1 = open(file_from, O_RDONLY);
 	if (*fd1 == -1)
@@ -86,7 +86,7 @@ int main(int ac, char **av)
 		dprintf(2, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
-	open_files(file_from, file_to, &fd1, &fd2);
+	open_file(file_from, file_to, &fd1, &fd2);
 	cp_(fd1, fd2);
 	close_files(fd1, fd2);
 	return (0);
