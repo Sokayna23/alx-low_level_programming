@@ -54,20 +54,23 @@ void cp_(int fd1, int fd2)
 
 	while ((r = read(fd1, buffer, 1024)) != 0)
 	{
-		if (r == -1L)
-		{
-			dprintf(STDERR_FILENO, "Error: Can't read from file %d\n", fd1);
-			close(fd1);
-			exit(98);
-		}
 		w = write(fd2, buffer, r);
-		if (w == -1L)
+		if (w == -1)
 		{
 			dprintf(STDERR_FILENO, "Error: Can't write to %d\n", fd2);
 			close(fd2);
 			exit(99);
 		}
+		if (w != r)
+			exit(99);
 	}
+	if (r == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't read from file %d\n", fd1);
+		close(fd1);
+		exit(98);
+	}
+
 
 }
 /**
