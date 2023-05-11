@@ -25,20 +25,14 @@ void open_file(const char *file_from, const char *file_to, int *fd1, int *fd2)
 	}
 }
 /**
- * close_files - close files descreptors and exits on error
- * @fd1: the file descriptor of the file to close
- * @fd2: the file descriptor of the file to close
+ * close_error - prints file descreptor close  error
+ * @fd: the file descriptor of the file to close
  */
-void close_files(int fd1, int fd2)
+void close_error(int fd)
 {
-	if (close(fd1) == -1)
+	if (close(fd) == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd1);
-		exit(100);
-	}
-	if (close(fd2) == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd2);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
 		exit(100);
 	}
 }
@@ -62,7 +56,11 @@ void cp_(int fd1, int fd2)
 			exit(99);
 		}
 		if (w != r)
+		{
+			close(fd1);
+			close(fd2);
 			exit(99);
+		}
 	}
 	if (r == -1)
 	{
@@ -91,6 +89,7 @@ int main(int ac, char **av)
 	}
 	open_file(file_from, file_to, &fd1, &fd2);
 	cp_(fd1, fd2);
-	close_files(fd1, fd2);
+	close_error(fd1);
+	close_error(fd2);
 	return (0);
 }
