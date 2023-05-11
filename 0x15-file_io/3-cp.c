@@ -36,17 +36,24 @@ void close_error(int fd)
 	}
 }
 /**
- * cp_ - copies file_from to file_to
- * @fd1: file descriptor of the file to copy from
- * @fd2: fike descriptor of the file to copy to
+ * main - copies the content of a file to another file
+ * @ac: number of arguments
+ * @av: the arguments passed to the program
+ * Return: always 0;
  */
-void cp_(int fd1, int fd2)
+int main(int ac, char **av)
 {
 	ssize_t r, w;
 	char buffer[1024];
+	int fd1 = -1, fd2 = -1;
 
-	do 
+	if (ac != 3)
 	{
+		dprintf(2, "Usage: cp file_from file_to\n");
+		exit(97);
+	}
+	open_file(av[1], av[2], &fd1, &fd2);
+	do {
 		r = read(fd1, buffer, 1024);
 		if (r == -1)
 		{
@@ -64,24 +71,6 @@ void cp_(int fd1, int fd2)
 			exit(99);
 		}
 	} while (r == 1024);
-}
-/**
- * main - entry point
- * @ac: number of arguments
- * @av: the arguments passed to the program
- * Return: always 0;
- */
-int main(int ac, char **av)
-{
-	int fd1 = -1, fd2 = -1;
-
-	if (ac != 3)
-	{
-		dprintf(2, "Usage: cp file_from file_to\n");
-		exit(97);
-	}
-	open_file(av[1], av[2], &fd1, &fd2);
-	cp_(fd1, fd2);
 	close_error(fd1);
 	close_error(fd2);
 	return (0);
