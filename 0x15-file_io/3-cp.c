@@ -43,20 +43,14 @@ void close_error(int fd)
  */
 void cp_(int fd1, int fd2)
 {
-	ssize_t r, w;
+	ssize_t r;
 	char buffer[1024];
 
 	while ((r = read(fd1, buffer, 1024)) != 0)
 	{
-		w = write(fd2, buffer, r);
-		if (w == -1)
+		if (r != write(fd2, buffer, r))
 		{
 			dprintf(STDERR_FILENO, "Error: Can't write to %d\n", fd2);
-			close(fd2);
-			exit(99);
-		}
-		if (w != r)
-		{
 			close(fd1);
 			close(fd2);
 			exit(99);
@@ -65,7 +59,6 @@ void cp_(int fd1, int fd2)
 	if (r == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read from file %d\n", fd1);
-		close(fd1);
 		exit(98);
 	}
 
@@ -88,6 +81,12 @@ int main(int ac, char **av)
 		exit(97);
 	}
 	open_file(file_from, file_to, &fd1, &fd2);
+	if (fd2 == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_to);
+		close(fd1);
+		exit(99);
+	}
 	cp_(fd1, fd2);
 	close_error(fd1);
 	close_error(fd2);
