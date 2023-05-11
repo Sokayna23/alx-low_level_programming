@@ -9,11 +9,6 @@
  */
 void open_file(const char *file_from, const char *file_to, int *fd1, int *fd2)
 {
-	if (!file_from)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file_from);
-		exit(98);
-	}
 	*fd1 = open(file_from, O_RDONLY);
 	if (*fd1 == -1)
 	{
