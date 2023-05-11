@@ -72,14 +72,13 @@ void cp_(int fd1, int fd2)
 int main(int ac, char **av)
 {
 	int fd1 = -1, fd2 = -1;
-	const char *file_from = av[1], *file_to = av[2];
 
 	if (ac != 3)
 	{
 		dprintf(2, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
-	open_file(file_from, file_to, &fd1, &fd2);
+	open_file(av[1], av[2], &fd1, &fd2);
 	cp_(fd1, fd2);
 	close_error(fd1);
 	close_error(fd2);
