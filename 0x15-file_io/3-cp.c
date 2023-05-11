@@ -63,16 +63,12 @@ int main(int ac, char **av)
 		if (r == -1)
 		{
 			dprintf(STDERR_FILENO, "Error: Can't read from %d\n", fd1);
-			close_error(fd1);
-			close_error(fd2);
 			exit(98);
 		}
 		w = write(fd2, buffer, r);
 		if (w == -1)
 		{
 			dprintf(STDERR_FILENO, "Error: Can't write to %d\n", fd2);
-			close_error(fd1);
-			close_error(fd2);
 			exit(99);
 		}
 	} while (r == 1024);
