@@ -50,7 +50,7 @@ int main(int ac, char **av)
 {
 	ssize_t r, w;
 	char buffer[1024];
-	int fd1 = -1, fd2 = -1;
+	int fd1, fd2;
 
 	if (ac != 3)
 	{
