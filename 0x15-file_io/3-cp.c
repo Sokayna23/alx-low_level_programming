@@ -45,7 +45,7 @@ void cp_(int fd1, int fd2)
 	ssize_t r;
 	char buffer[1024];
 
-	while ((r = read(fd1, buffer, 1024)) != 0)
+	while ((r = read(fd1, buffer, 1024)) >  0)
 	{
 		if (r != write(fd2, buffer, r))
 		{
