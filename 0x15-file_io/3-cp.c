@@ -53,8 +53,8 @@ int main(int ac, char **av)
 		exit(97);
 	}
 	open_file(av[1], av[2], &fd1, &fd2);
-	do {
-		r = read(fd1, buffer, 1024);
+	while ((r = read(fd1, buffer, 1024)) != 0)
+	{
 		if (r == -1)
 		{
 			dprintf(STDERR_FILENO, "Error: Can't read from %d\n", fd1);
@@ -66,7 +66,7 @@ int main(int ac, char **av)
 			dprintf(STDERR_FILENO, "Error: Can't write to %d\n", fd2);
 			exit(99);
 		}
-	} while (r != 0);
+	}
 	close_error(fd1);
 	close_error(fd2);
 	return (0);
