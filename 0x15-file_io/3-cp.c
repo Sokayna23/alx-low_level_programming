@@ -10,14 +10,14 @@
 void open_file(const char *file_from, const char *file_to, int *fd1, int *fd2)
 {
 	*fd1 = open(file_from, O_RDONLY);
-	if (*fd1 == -1)
+	if (!file_from || *fd1 == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file_from);
 		close(*fd1);
 		exit(98);
 	}
 	*fd2 = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, 0664);
-	if (*fd2 == -1)
+	if (!file_to || *fd2 == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_to);
 		close(*fd2);
