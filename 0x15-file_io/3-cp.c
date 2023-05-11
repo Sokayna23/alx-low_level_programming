@@ -71,7 +71,7 @@ int main(int ac, char **av)
 			dprintf(STDERR_FILENO, "Error: Can't write to %d\n", fd2);
 			exit(99);
 		}
-	} while (r == 1024);
+	} while (r != 0);
 	close_error(fd1);
 	close_error(fd2);
 	return (0);
