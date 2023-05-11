@@ -42,31 +42,33 @@ void close_error(int fd)
  */
 void cp_(int fd1, int fd2)
 {
-	ssize_t r;
+	ssize_t r, w;
 	char buffer[1024];
 
-	while ((r = read(fd1, buffer, 1024)) >  0)
+	do 
 	{
-		if (r != write(fd2, buffer, r))
+		r = read(fd1, buffer, 1024);
+		if (r == -1)
+		{
+			dprintf(STDERR_FILENO, "Error: Can't read from %d\n", fd1);
+			close_error(fd1);
+			close_error(fd2);
+			exit(98);
+		}
+		w = write(fd2, buffer, r);
+		if (w == -1)
 		{
 			dprintf(STDERR_FILENO, "Error: Can't write to %d\n", fd2);
-			close(fd1);
-			close(fd2);
+			close_error(fd1);
+			close_error(fd2);
 			exit(99);
 		}
-	}
-	if (r == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %d\n", fd1);
-		exit(98);
-	}
-
-
+	} while (r == 1024);
 }
 /**
  * main - entry point
  * @ac: number of arguments
- * @av: a pointer of characters
+ * @av: the arguments passed to the program
  * Return: always 0;
  */
 int main(int ac, char **av)
