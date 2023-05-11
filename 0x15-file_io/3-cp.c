@@ -13,11 +13,10 @@ void open_file(const char *file_from, const char *file_to, int *fd1, int *fd2)
 	if (!file_from || *fd1 == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file_from);
-		close(*fd1);
 		exit(98);
 	}
 	*fd2 = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, 0664);
-	if (!file_to || *fd2 == -1)
+	if (*fd2 == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_to);
 		close(*fd2);
@@ -81,12 +80,6 @@ int main(int ac, char **av)
 		exit(97);
 	}
 	open_file(file_from, file_to, &fd1, &fd2);
-	if (fd2 == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_to);
-		close(fd1);
-		exit(99);
-	}
 	cp_(fd1, fd2);
 	close_error(fd1);
 	close_error(fd2);
